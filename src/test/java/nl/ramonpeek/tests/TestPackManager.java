@@ -95,7 +95,7 @@ public class TestPackManager {
 
         //Assert
         Assert.assertNotNull(result);
-        Assert.assertNotNull(result.getWolves().stream().filter(wolf -> wolf.getId() == packCreator.getId()).findFirst().get());
+        Assert.assertNotNull(result.getWolves().stream().filter(wolf -> wolf.getId() == packCreator.getId()).findFirst().orElse(null));
     }
 
     @Test
@@ -126,112 +126,119 @@ public class TestPackManager {
     @Test
     public void testAddExistingNonPresentWolfToExistingPack() {
         //Arrange
+        Wolf wolf = new Wolf(2, WolfType.ALPHA, "Jordi", "Siemens", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = new Pack(0, "AlphaPack", new ArrayList<Wolf>() {{
+            add(new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0)));
+            add(new Wolf(1, WolfType.OMEGA, "Marije", "Janssen", Gender.FEMALE, new Date(), new Location(0, 0)));
+        }});
 
         //Act
+        Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
+        Assert.assertNotNull(result);
+        Assert.assertNotNull(result.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
     }
 
     @Test
     public void testAddExistingNonPresentWolfToNonExistingPack() {
         //Arrange
+        Wolf wolf = new Wolf(2, WolfType.ALPHA, "Jordi", "Siemens", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = null;
 
         //Act
+        Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
+        Assert.assertNull(result);
     }
 
     @Test
     public void testAddExistingPresentWolfToExistingPack() {
         //Arrange
+        Wolf wolf = new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = new Pack(1, "BetaPack", new ArrayList<Wolf>() {{
+            add(new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0)));
+        }});
 
         //Act
+        Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
-    }
-
-    @Test
-    public void testAddExistingPresentWolfToNonExistingPack() {
-        //Arrange
-
-        //Act
-
-        //Assert
+        Assert.assertNull(result);
     }
 
     @Test
     public void testAddNonExistingWolfToExistingPack() {
         //Arrange
+        Wolf wolf = null;
+        Pack pack = new Pack(1, "BetaPack", new ArrayList<Wolf>() {{
+            add(new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0)));
+        }});
 
         //Act
+        Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
+        Assert.assertNull(result);
     }
 
     @Test
     public void testAddNonExistingWolfToNonExistingPack() {
         //Arrange
+        Wolf wolf = null;
+        Pack pack = null;
 
         //Act
+        Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
+        Assert.assertNull(result);
     }
-
-    /**
-     *
-     */
 
     @Test
     public void testRemoveExistingNonPresentWolfFromExistingPack() {
         //Arrange
+        Wolf wolf = new Wolf(2, WolfType.ALPHA, "Jordi", "Siemens", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = new Pack(0, "AlphaPack", new ArrayList<Wolf>() {{
+            add(new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0)));
+            add(new Wolf(1, WolfType.OMEGA, "Marije", "Janssen", Gender.FEMALE, new Date(), new Location(0, 0)));
+        }});
 
         //Act
+        Pack result = packManager.removeWolfFromPack(wolf, pack);
 
         //Assert
+        Assert.assertNotNull(result);
     }
 
     @Test
     public void testRemoveExistingNonPresentWolfFromNonExistingPack() {
         //Arrange
+        Wolf wolf = new Wolf(2, WolfType.ALPHA, "Jordi", "Siemens", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = null;
 
         //Act
+        Pack result = packManager.removeWolfFromPack(wolf, pack);
 
         //Assert
+        Assert.assertNull(result);
     }
 
     @Test
     public void testRemoveExistingPresentWolfFromExistingPack() {
         //Arrange
+        Wolf wolf = new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = new Pack(0, "AlphaPack", new ArrayList<Wolf>() {{
+            add(new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0)));
+            add(new Wolf(1, WolfType.OMEGA, "Marije", "Janssen", Gender.FEMALE, new Date(), new Location(0, 0)));
+        }});
 
         //Act
+        Pack result = packManager.removeWolfFromPack(wolf, pack);
 
         //Assert
-    }
-
-    @Test
-    public void testRemoveExistingPresentWolfFromNonExistingPack() {
-        //Arrange
-
-        //Act
-
-        //Assert
-    }
-
-    @Test
-    public void testRemoveNonExistingWolfFromExistingPack() {
-        //Arrange
-
-        //Act
-
-        //Assert
-    }
-
-    @Test
-    public void testRemoveNonExistingWolfFromNonExistingPack() {
-        //Arrange
-
-        //Act
-
-        //Assert
+        Assert.assertNotNull(result);
+        Assert.assertNull(result.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
     }
 }
