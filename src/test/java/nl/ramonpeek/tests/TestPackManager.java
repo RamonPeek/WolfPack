@@ -8,6 +8,7 @@ import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.PackRepo;
 import nl.ramonpeek.repositories.WolfRepo;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,11 +30,19 @@ public class TestPackManager {
 
     @Test
     public void testGetPackByExistingId() {
+        //Arrange
 
+        //Act
+
+        //Assert
     }
 
     @Test
     public void testGetPackByNonExistingId() {
+        //Arrange
 
+        //Act
+
+        //Assert
     }
 }

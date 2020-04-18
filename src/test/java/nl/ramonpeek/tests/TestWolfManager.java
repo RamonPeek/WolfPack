@@ -24,11 +24,19 @@ public class TestWolfManager {
 
     @Test
     public void testGetWolfByExistingId() {
+        //Arrange
 
+        //Act
+
+        //Assert
     }
 
     @Test
     public void testGetWolfByNonExistingId() {
+        //Arrange
 
+        //Act
+
+        //Assert
     }
 }
