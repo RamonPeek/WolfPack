@@ -16,7 +16,7 @@ public interface IPackContext {
 
     /**
      * A method for retrieving all packs.
-     * @return a collection of Pack-objects; if no packs are found this returns null.
+     * @return a collection of Pack-objects; if no packs are found this returns an empty list.
      */
     List<Pack> getAllPacks();
 

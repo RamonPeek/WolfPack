@@ -15,7 +15,7 @@ public interface IWolfRepo {
 
     /**
      * A method for retrieving all wolves.
-     * @return a collection of Wolf-objects; if no wolves are found this returns null.
+     * @return a collection of Wolf-objects; if no wolves are found this returns an empty list.
      */
     List<Wolf> getAllWolves();
 

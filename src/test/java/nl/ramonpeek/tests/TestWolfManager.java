@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TestWolfManager {
 
@@ -51,4 +52,29 @@ public class TestWolfManager {
         //Assert
         Assert.assertNull(result);
     }
+
+    @Test
+    public void testGetAllWolfsIfWolfsExist() {
+        //Arrange
+
+        //Act
+        List<Wolf> result = wolfManager.getAllWolves();
+
+        //Assert
+        Assert.assertEquals(result.size(), 2);
+    }
+
+    @Test
+    public void testGetAllWolfsIfNoWolfsExist() {
+        //Arrange
+        wolfManager = new WolfManager(new WolfRepo(new WolfMemoryContext()));
+
+        //Act
+        List<Wolf> result = wolfManager.getAllWolves();
+
+        //Assert
+        Assert.assertEquals(result.size(), 0);
+    }
+
+
 }
