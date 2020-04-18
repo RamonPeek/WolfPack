@@ -29,6 +29,16 @@ public class Wolf {
         this.location = location;
     }
 
+    public Wolf(int id, WolfType type, String firstName, String middleName, String lastName, Gender gender, Date birthDate) {
+        this.id = id;
+        this.type = type;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.birthDate = birthDate;
+    }
+
     public Wolf(int id, WolfType type, String firstName, String lastName, Gender gender, Date birthDate, Location location) {
         this.id = id;
         this.type = type;
@@ -37,6 +47,15 @@ public class Wolf {
         this.gender = gender;
         this.birthDate = birthDate;
         this.location = location;
+    }
+
+    public Wolf(int id, WolfType type, String firstName, String lastName, Gender gender, Date birthDate) {
+        this.id = id;
+        this.type = type;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.birthDate = birthDate;
     }
 
     public int getId() {

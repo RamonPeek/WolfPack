@@ -76,5 +76,130 @@ public class TestWolfManager {
         Assert.assertEquals(result.size(), 0);
     }
 
+    @Test
+    public void testCreateWolfWithAllProperties() {
+        //Arrange
+        Wolf wolf = new Wolf(3, WolfType.BETA, "Nathan", "van", "Huizens", Gender.MALE, new Date(), new Location(0,0));
 
+        //Act
+        Wolf result = wolfManager.createWolf(wolf);
+
+        //Assert
+        Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void testCreateWolfWithRequiredProperties() {
+        //Arrange
+        Wolf wolf = new Wolf(3, WolfType.BETA, "Marieke", "Visser", Gender.FEMALE, new Date());
+
+        //Act
+        Wolf result = wolfManager.createWolf(wolf);
+
+        //Assert
+        Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void testCreateWolfWithoutRequiredProperties() {
+        //Arrange
+        Wolf wolf = new Wolf(3, null, "Stan", null, Gender.MALE, null);
+
+        //Act
+        Wolf result = wolfManager.createWolf(wolf);
+
+        //Assert
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testCreateWolfWithAlreadyExistingId() {
+        //Arrange
+        Wolf wolf = new Wolf(0, WolfType.OMEGA, "Pieter", "Bruijnsma", Gender.MALE, new Date(), new Location(0,0));
+
+        //Act
+        Wolf result = wolfManager.createWolf(wolf);
+
+        //Assert
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testDeleteExistingWolf() {
+        //Arrange
+        Wolf wolf = wolfManager.getWolfById(0);
+
+        //Act
+        Wolf result = wolfManager.deleteWolf(wolf);
+
+        //Assert
+        Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void testDeleteNonExistingWolf() {
+        //Arrange
+        Wolf wolf = wolfManager.getWolfById(0);
+
+        //Act
+        Wolf result = wolfManager.deleteWolf(wolf);
+
+        //Assert
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testUpdateExistingWolfWithWolfWithAllProperties() {
+        //Arrange
+        Wolf inputWolf = wolfManager.getWolfById(0);
+        Wolf updatedWolf = new Wolf(0, WolfType.ALPHA, "Jan", "van", "Hogeveen", Gender.MALE, new Date(), new Location(0, 0));
+
+        //Act
+        Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
+
+        //Assert
+        Assert.assertNotNull(result);
+        Assert.assertSame(result.getType(), WolfType.ALPHA);
+        Assert.assertNotNull(result.getMiddleName());
+    }
+
+    @Test
+    public void testUpdateExistingWolfWithWolfWithRequiredProperties() {
+        //Arrange
+        Wolf inputWolf = wolfManager.getWolfById(0);
+        Wolf updatedWolf = new Wolf(0, WolfType.OMEGA, "Jan", "Hogeveen", Gender.MALE, new Date());
+
+        //Act
+        Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
+
+        //Assert
+        Assert.assertNotNull(result);
+        Assert.assertSame(result.getType(), WolfType.OMEGA);
+    }
+
+    @Test
+    public void testUpdateExistingWolfWithWolfWithoutRequiredProperties() {
+        //Arrange
+        Wolf inputWolf = wolfManager.getWolfById(0);
+        Wolf updatedWolf = new Wolf(0, null, "Jan", "Hogeveen", Gender.MALE, null);
+
+        //Act
+        Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
+
+        //Assert
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testUpdateNonExistingWolf() {
+        //Arrange
+        Wolf inputWolf = wolfManager.getWolfById(3);
+        Wolf updatedWolf = new Wolf(0, WolfType.OMEGA, "Jan", "Hogeveen", Gender.MALE, new Date());
+
+        //Act
+        Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
+
+        //Assert
+        Assert.assertNull(result);
+    }
 }
