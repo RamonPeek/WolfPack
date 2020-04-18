@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class TestPackManager {
 
@@ -56,5 +57,181 @@ public class TestPackManager {
 
         //Assert
         Assert.assertNull(result);
+    }
+
+    @Test
+    public void testGetAllPacksIfPacksExist() {
+        //Arrange
+
+        //Act
+        List<Pack> result = packManager.getAllPacks();
+
+        //Assert
+        Assert.assertEquals(result.size(), 2);
+    }
+
+    @Test
+    public void testGetAllWolfsIfNoWolfsExist() {
+        //Arrange
+        packManager = new PackManager(new PackRepo(new PackMemoryContext()));
+
+        //Act
+        List<Pack> result = packManager.getAllPacks();
+
+        //Assert
+        Assert.assertEquals(result.size(), 0);
+    }
+
+    @Test
+    public void testCreatePackWithAllProperties() {
+        //Arrange
+        Wolf packCreator = new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = new Pack(3, "DeltaPack", new ArrayList<Wolf>() {{
+            add(packCreator);
+        }});
+
+        //Act
+        Pack result = packManager.createPack(pack);
+
+        //Assert
+        Assert.assertNotNull(result);
+        Assert.assertNotNull(result.getWolves().stream().filter(wolf -> wolf.getId() == packCreator.getId()).findFirst().get());
+    }
+
+    @Test
+    public void testCreatePackWithoutAllProperties() {
+        //Arrange
+        Wolf packCreator = new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0));
+        Pack pack = new Pack(3, null, null);
+
+        //Act
+        Pack result = packManager.createPack(pack);
+
+        //Assert
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testCreatePackWithAlreadyExistingId() {
+        //Arrange
+        Pack pack = new Pack(0, "TestPack", new ArrayList<Wolf>());
+
+        //Act
+        Pack result = packManager.createPack(pack);
+
+        //Assert
+        Assert.assertNull(result);
+    }
+
+    @Test
+    public void testAddExistingNonPresentWolfToExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testAddExistingNonPresentWolfToNonExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testAddExistingPresentWolfToExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testAddExistingPresentWolfToNonExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testAddNonExistingWolfToExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testAddNonExistingWolfToNonExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    /**
+     *
+     */
+
+    @Test
+    public void testRemoveExistingNonPresentWolfFromExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testRemoveExistingNonPresentWolfFromNonExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testRemoveExistingPresentWolfFromExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testRemoveExistingPresentWolfFromNonExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testRemoveNonExistingWolfFromExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
+    }
+
+    @Test
+    public void testRemoveNonExistingWolfFromNonExistingPack() {
+        //Arrange
+
+        //Act
+
+        //Assert
     }
 }
