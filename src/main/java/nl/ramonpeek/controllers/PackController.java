@@ -19,7 +19,7 @@ public class PackController implements IPackController {
 
     @ApiOperation(value = "Get a pack based on an id", response = Pack.class)
     @GetMapping("{packId}")
-    public Wolf getPackById(@PathVariable("packId") int packId) {
+    public Pack getPackById(@PathVariable("packId") int packId) {
         return null;
     }
 
