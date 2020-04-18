@@ -14,6 +14,12 @@ public class WolfController {
     @Autowired
     private IWolfManager wolfManager;
 
+    @ApiOperation(value = "Get a wolf based on an id", response = Wolf.class)
+    @GetMapping("{wolfId}")
+    public Wolf getWolfById(@PathVariable("wolfId") int wolfId) {
+        return null;
+    }
+
     @ApiOperation(value = "Get a collection of all wolves.", response = Wolf.class, responseContainer = "List")
     @GetMapping()
     public List<Wolf> getAllWolves() {

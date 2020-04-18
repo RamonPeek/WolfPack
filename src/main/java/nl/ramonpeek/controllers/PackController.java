@@ -16,6 +16,12 @@ public class PackController {
     @Autowired
     private IPackManager packManager;
 
+    @ApiOperation(value = "Get a pack based on an id", response = Pack.class)
+    @GetMapping("{packId}")
+    public Wolf getPackById(@PathVariable("packId") int packId) {
+        return null;
+    }
+
     @ApiOperation(value = "Get a collection of all packs.", response = Pack.class, responseContainer = "List")
     @GetMapping()
     public List<Pack> getAllPacks() {
