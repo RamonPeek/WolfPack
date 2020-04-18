@@ -71,7 +71,7 @@ public class TestPackManager {
     }
 
     @Test
-    public void testGetAllWolfsIfNoWolfsExist() {
+    public void testGetAllPacksIfNoPacksExist() {
         //Arrange
         packManager = new PackManager(new PackRepo(new PackMemoryContext()));
 
