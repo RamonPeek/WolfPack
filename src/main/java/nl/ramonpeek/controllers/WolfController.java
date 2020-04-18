@@ -1,6 +1,7 @@
 package nl.ramonpeek.controllers;
 
 import io.swagger.annotations.ApiOperation;
+import nl.ramonpeek.controllers.interfaces.IWolfController;
 import nl.ramonpeek.managers.interfaces.IWolfManager;
 import nl.ramonpeek.models.Wolf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/wolf", produces = "application/json")
-public class WolfController {
+public class WolfController implements IWolfController {
 
     @Autowired
     private IWolfManager wolfManager;

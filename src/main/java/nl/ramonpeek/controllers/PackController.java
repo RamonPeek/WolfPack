@@ -1,6 +1,7 @@
 package nl.ramonpeek.controllers;
 
 import io.swagger.annotations.ApiOperation;
+import nl.ramonpeek.controllers.interfaces.IPackController;
 import nl.ramonpeek.managers.interfaces.IPackManager;
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/pack", produces = "application/json")
-public class PackController {
+public class PackController implements IPackController {
 
     @Autowired
     private IPackManager packManager;
