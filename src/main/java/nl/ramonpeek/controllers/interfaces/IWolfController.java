@@ -1,6 +1,7 @@
 package nl.ramonpeek.controllers.interfaces;
 
 import nl.ramonpeek.models.Wolf;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -9,36 +10,36 @@ public interface IWolfController {
     /**
      * A method for retrieving a wolf based on an id.
      * @param wolfId the id of the wolf that needs to be retrieved.
-     * @return the found Wolf-object; if no wolf is found this returns null.
+     * @return a response entity containing the status code and the found Wolf-object; if no wolf is found this returns null.
      */
-    Wolf getWolfById(int wolfId);
+    ResponseEntity<Wolf> getWolfById(int wolfId);
 
     /**
      * A method for retrieving all wolves.
-     * @return a collection of Wolf-objects; if no wolves are found this returns an empty list.
+     * @return a response entity containing the status code and a collection of Wolf-objects; if no wolves are found this returns an empty list.
      */
-    List<Wolf> getAllWolves();
+    ResponseEntity<List<Wolf>> getAllWolves();
 
     /**
      * A method for creating a wolf.
      * @param wolf the Wolf-object that needs to be created.
-     * @return the created Wolf-object; if the wolf could not be created this returns null.
+     * @return a response entity containing the status code and body.
      */
-    Wolf createWolf(Wolf wolf);
+    ResponseEntity<String> createWolf(Wolf wolf);
 
     /**
      * A method for deleting a wolf.
      * @param wolfId the id of the wolf that needs to be deleted.
-     * @return the deleted Wolf-object; if the wolf could not be deleted this returns null.
+     * @return a response entity containing the status code and body.
      */
-    Wolf deleteWolf(int wolfId);
+    ResponseEntity<String> deleteWolf(int wolfId);
 
     /**
      * A method for updating a wolf.
      * @param wolfId the id of the wolf that needs to be updated.
      * @param updatedWolf the updated Wolf-object.
-     * @return the updated Wolf-object; if the wolfId is invalid this returns null.
+     * @return a response entity containing the status code and body.
      */
-    Wolf updateWolf(int wolfId, Wolf updatedWolf);
+    ResponseEntity<String> updateWolf(int wolfId, Wolf updatedWolf);
 
 }

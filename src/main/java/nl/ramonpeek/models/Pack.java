@@ -1,11 +1,15 @@
 package nl.ramonpeek.models;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class Pack {
 
+    @NotNull
     private int id;
+    @NotNull
     private String name;
+    @NotNull
     private List<Wolf> wolves;
 
     public Pack() {}

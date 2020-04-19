@@ -16,7 +16,9 @@ public class WolfManager implements IWolfManager {
 
     @Override
     public Wolf getWolfById(int wolfId) {
-        return wolfRepo.getWolfById(wolfId);
+        Wolf wolf = wolfRepo.getWolfById(wolfId);
+
+        return wolf;
     }
 
     @Override

@@ -16,6 +16,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.validation.Validation;
+import javax.validation.ValidatorFactory;
+
 @Configuration
 public class ApplicationConfiguration {
 
@@ -27,6 +30,11 @@ public class ApplicationConfiguration {
     @Bean
     public IPackManager packManager() {
         return new PackManager(new PackRepo(new PackMemoryContext()));
+    }
+
+    @Bean
+    public ValidatorFactory validatorFactory() {
+        return Validation.buildDefaultValidatorFactory();
     }
 
 }

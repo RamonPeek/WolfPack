@@ -2,6 +2,7 @@ package nl.ramonpeek.controllers.interfaces;
 
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -10,22 +11,22 @@ public interface IPackController {
     /**
      * A method for retrieving a pack based on an id.
      * @param packId the id of the pack that needs to be retrieved.
-     * @return the found Pack-object; if no pack is found this returns null.
+     * @return a response entity containing the status code and the found Pack-object; if no pack is found this returns null.
      */
-    Pack getPackById(int packId);
+    ResponseEntity<Pack> getPackById(int packId);
 
     /**
      * A method for retrieving all packs.
-     * @return a collection of Pack-objects; if no packs are found this returns an empty list.
+     * @return a response entity containing the status code and a collection of Pack-objects; if no packs are found this returns an empty list.
      */
-    List<Pack> getAllPacks();
+    ResponseEntity<List<Pack>> getAllPacks();
 
     /**
      * A method for creating a pack.
      * @param pack the Pack-object that needs to be created.
-     * @return the created Pack-object; if the pack could not be created this returns null.
+     * @return a response entity containing the status code and body.
      */
-    Pack createPack(Pack pack);
+    ResponseEntity<String> createPack(Pack pack);
 
     /**
      * A method for adding a wolf to a pack.
@@ -33,14 +34,14 @@ public interface IPackController {
      * @param packId the id of the pack that a wolf needs to be added to.
      * @return the updated Pack-object containing the newly added wolf; if the wolf could not be added or the packId is invalid this returns null.
      */
-    Pack addWolfToPack(Wolf wolf, int packId);
+    ResponseEntity<String> addWolfToPack(Wolf wolf, int packId);
 
     /**
      * A method for removing a wolf from a pack.
      * @param wolf the Wolf-object that needs to be removed from a pack.
      * @param packId the id of the pack that a wolf needs to be removed from.
-     * @return the updated Pack-object without the Wolf-object from the request; if the wolf could not be removed or the packId is invalid this returns null.
+     * @return a response entity containing the status code and body.
      */
-    Pack removeWolfFromPack(Wolf wolf, int packId);
+    ResponseEntity<String> removeWolfFromPack(Wolf wolf, int packId);
 
 }

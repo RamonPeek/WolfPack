@@ -1,8 +1,12 @@
 package nl.ramonpeek.models;
 
+import javax.validation.constraints.NotNull;
+
 public class Location {
 
+    @NotNull
     private float latitude;
+    @NotNull
     private float longitude;
 
     public Location() {}

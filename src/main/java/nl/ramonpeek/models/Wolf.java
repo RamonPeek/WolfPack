@@ -3,17 +3,26 @@ package nl.ramonpeek.models;
 import nl.ramonpeek.models.enums.Gender;
 import nl.ramonpeek.models.enums.WolfType;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class Wolf {
 
+    @NotNull
     private int id;
+    @NotNull
     private WolfType type;
+    @NotNull
     private String firstName;
+
     private String middleName;
+    @NotNull
     private String lastName;
+    @NotNull
     private Gender gender;
+    @NotNull
     private Date birthDate;
+
     private Location location;
 
     public Wolf() {}
