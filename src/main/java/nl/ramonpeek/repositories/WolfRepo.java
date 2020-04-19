@@ -26,21 +26,29 @@ public class WolfRepo implements IWolfRepo {
 
     @Override
     public Wolf createWolf(Wolf wolf) {
+        if(wolf == null)
+            return null;
         return wolfContext.createWolf(wolf);
     }
 
     @Override
     public Wolf deleteWolf(Wolf wolf) {
+        if(wolf == null)
+            return null;
         return wolfContext.deleteWolf(wolf);
     }
 
     @Override
     public Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf) {
+        if(requestedWolf == null || updatedWolf == null)
+            return null;
         return wolfContext.updateWolf(requestedWolf, updatedWolf);
     }
 
     @Override
     public boolean containsWolf(Wolf wolf) {
+        if(wolf == null)
+            return false;
         return wolfContext.containsWolf(wolf);
     }
 }

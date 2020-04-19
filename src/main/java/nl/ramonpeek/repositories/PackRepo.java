@@ -27,21 +27,29 @@ public class PackRepo implements IPackRepo {
 
     @Override
     public Pack createPack(Pack pack) {
+        if(pack == null)
+            return null;
         return packContext.createPack(pack);
     }
 
     @Override
     public Pack addWolfToPack(Wolf wolf, Pack pack) {
+        if(wolf == null || pack == null)
+            return null;
         return packContext.addWolfToPack(wolf, pack);
     }
 
     @Override
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
+        if(wolf == null || pack == null)
+            return null;
         return packContext.removeWolfFromPack(wolf, pack);
     }
 
     @Override
     public boolean containsPack(Pack pack) {
+        if(pack == null)
+            return false;
         return packContext.containsPack(pack);
     }
 }

@@ -9,9 +9,7 @@ import java.util.List;
 public class PackMongoContext implements IPackContext {
 
     @Override
-    public Pack getPackById(int packId) {
-        return null;
-    }
+    public Pack getPackById(int packId) { return null; }
 
     @Override
     public List<Pack> getAllPacks() {

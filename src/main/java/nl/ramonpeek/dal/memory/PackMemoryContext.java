@@ -27,12 +27,16 @@ public class PackMemoryContext implements IPackContext {
 
     @Override
     public Pack createPack(Pack pack) {
+        if(pack == null)
+            return null;
         memory.add(pack);
         return pack;
     }
 
     @Override
     public Pack addWolfToPack(Wolf wolf, Pack pack) {
+        if(wolf == null || pack == null)
+            return null;
         Pack foundPack = memory.stream().filter(p -> p.getId() == pack.getId()).findFirst().orElse(null);
         if(foundPack == null)
             return null;
@@ -43,6 +47,8 @@ public class PackMemoryContext implements IPackContext {
 
     @Override
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
+        if(wolf == null || pack == null)
+            return null;
         Pack foundPack = memory.stream().filter(p -> p.getId() == pack.getId()).findFirst().orElse(null);
         if(foundPack == null)
             return null;
@@ -53,6 +59,8 @@ public class PackMemoryContext implements IPackContext {
 
     @Override
     public boolean containsPack(Pack pack) {
+        if(pack == null)
+            return false;
         return memory.stream().anyMatch(p -> p.getId() == pack.getId());
     }
 }
