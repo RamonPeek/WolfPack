@@ -10,7 +10,7 @@ public interface IWolfController {
     /**
      * A method for retrieving a wolf based on an id.
      * @param wolfId the id of the wolf that needs to be retrieved.
-     * @return a response entity containing the status code and the found Wolf-object; if no wolf is found this returns null.
+     * @return a response entity containing the status code and the found Wolf-object; if no wolf is found this returns a NOT_FOUND response.
      */
     ResponseEntity<Wolf> getWolfById(int wolfId);
 

@@ -11,7 +11,7 @@ public interface IPackController {
     /**
      * A method for retrieving a pack based on an id.
      * @param packId the id of the pack that needs to be retrieved.
-     * @return a response entity containing the status code and the found Pack-object; if no pack is found this returns null.
+     * @return a response entity containing the status code and the found Pack-object; if no pack is found this returns a NOT_FOUND response.
      */
     ResponseEntity<Pack> getPackById(int packId);
 
