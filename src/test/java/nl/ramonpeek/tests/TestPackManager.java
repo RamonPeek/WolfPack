@@ -8,9 +8,9 @@ import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.models.enums.Gender;
 import nl.ramonpeek.models.enums.WolfType;
 import nl.ramonpeek.repositories.PackRepo;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +20,7 @@ public class TestPackManager {
 
     private PackManager packManager;
 
-    @Before
+    @BeforeEach
     public void resetTestEnvironment() {
         PackMemoryContext context = new PackMemoryContext();
         context.setMemory(new ArrayList<Pack>() {{
@@ -44,7 +44,7 @@ public class TestPackManager {
         Pack result = packManager.getPackById(packId);
 
         //Assert
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class TestPackManager {
         Pack result = packManager.getPackById(packId);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class TestPackManager {
         List<Pack> result = packManager.getAllPacks();
 
         //Assert
-        Assert.assertEquals(result.size(), 2);
+        Assertions.assertEquals(result.size(), 2);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class TestPackManager {
         List<Pack> result = packManager.getAllPacks();
 
         //Assert
-        Assert.assertEquals(result.size(), 0);
+        Assertions.assertEquals(result.size(), 0);
     }
 
     @Test
@@ -94,8 +94,8 @@ public class TestPackManager {
         Pack result = packManager.createPack(pack);
 
         //Assert
-        Assert.assertNotNull(result);
-        Assert.assertNotNull(result.getWolves().stream().filter(wolf -> wolf.getId() == packCreator.getId()).findFirst().orElse(null));
+        Assertions.assertNotNull(result);
+        Assertions.assertNotNull(result.getWolves().stream().filter(wolf -> wolf.getId() == packCreator.getId()).findFirst().orElse(null));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class TestPackManager {
         Pack result = packManager.createPack(pack);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class TestPackManager {
         Pack result = packManager.createPack(pack);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -136,8 +136,8 @@ public class TestPackManager {
         Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
-        Assert.assertNotNull(result);
-        Assert.assertNotNull(result.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
+        Assertions.assertNotNull(result);
+        Assertions.assertNotNull(result.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
     }
 
     @Test
@@ -150,7 +150,7 @@ public class TestPackManager {
         Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -165,7 +165,7 @@ public class TestPackManager {
         Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class TestPackManager {
         Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -193,7 +193,7 @@ public class TestPackManager {
         Pack result = packManager.addWolfToPack(wolf, pack);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -209,7 +209,7 @@ public class TestPackManager {
         Pack result = packManager.removeWolfFromPack(wolf, pack);
 
         //Assert
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
     }
 
     @Test
@@ -222,7 +222,7 @@ public class TestPackManager {
         Pack result = packManager.removeWolfFromPack(wolf, pack);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -238,7 +238,7 @@ public class TestPackManager {
         Pack result = packManager.removeWolfFromPack(wolf, pack);
 
         //Assert
-        Assert.assertNotNull(result);
-        Assert.assertNull(result.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
+        Assertions.assertNotNull(result);
+        Assertions.assertNull(result.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
     }
 }

@@ -11,20 +11,17 @@ import nl.ramonpeek.repositories.WolfRepo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
-
 @Configuration
 public class ApplicationConfiguration {
 
     @Bean
-    public IWolfManager wolfManager() {
-        return new WolfManager(new WolfRepo(new WolfMemoryContext()));
+    public PackManager packManager() {
+        return new PackManager(new PackRepo(new PackMemoryContext()));
     }
 
     @Bean
-    public IPackManager packManager() {
-        return new PackManager(new PackRepo(new PackMemoryContext()));
+    public WolfManager wolfManager() {
+        return new WolfManager(new WolfRepo(new WolfMemoryContext()));
     }
 
 }

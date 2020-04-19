@@ -7,9 +7,9 @@ import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.models.enums.Gender;
 import nl.ramonpeek.models.enums.WolfType;
 import nl.ramonpeek.repositories.WolfRepo;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +19,7 @@ public class TestWolfManager {
 
     private WolfManager wolfManager;
 
-    @Before
+    @BeforeEach
     public void resetTestEnvironment() {
         WolfMemoryContext context = new WolfMemoryContext();
         context.setMemory(new ArrayList<Wolf>() {{
@@ -38,7 +38,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.getWolfById(wolfId);
 
         //Assert
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
     }
 
     @Test
@@ -50,7 +50,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.getWolfById(wolfId);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class TestWolfManager {
         List<Wolf> result = wolfManager.getAllWolves();
 
         //Assert
-        Assert.assertEquals(result.size(), 2);
+        Assertions.assertEquals(result.size(), 2);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class TestWolfManager {
         List<Wolf> result = wolfManager.getAllWolves();
 
         //Assert
-        Assert.assertEquals(result.size(), 0);
+        Assertions.assertEquals(result.size(), 0);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.createWolf(wolf);
 
         //Assert
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.createWolf(wolf);
 
         //Assert
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.createWolf(wolf);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -121,7 +121,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.createWolf(wolf);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.deleteWolf(wolf);
 
         //Assert
-        Assert.assertNotNull(result);
+        Assertions.assertNotNull(result);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.deleteWolf(wolf);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -158,9 +158,9 @@ public class TestWolfManager {
         Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
 
         //Assert
-        Assert.assertNotNull(result);
-        Assert.assertSame(result.getType(), WolfType.ALPHA);
-        Assert.assertNotNull(result.getMiddleName());
+        Assertions.assertNotNull(result);
+        Assertions.assertSame(result.getType(), WolfType.ALPHA);
+        Assertions.assertNotNull(result.getMiddleName());
     }
 
     @Test
@@ -173,8 +173,8 @@ public class TestWolfManager {
         Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
 
         //Assert
-        Assert.assertNotNull(result);
-        Assert.assertSame(result.getType(), WolfType.OMEGA);
+        Assertions.assertNotNull(result);
+        Assertions.assertSame(result.getType(), WolfType.OMEGA);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class TestWolfManager {
         Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 
     @Test
@@ -200,6 +200,6 @@ public class TestWolfManager {
         Wolf result = wolfManager.updateWolf(inputWolf, updatedWolf);
 
         //Assert
-        Assert.assertNull(result);
+        Assertions.assertNull(result);
     }
 }
