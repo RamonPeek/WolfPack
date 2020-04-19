@@ -77,7 +77,7 @@ public class WolfController implements IWolfController {
         if(!validator.validate(updatedWolf).isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Wolf-object.");
         Wolf wolf = wolfManager.getWolfById(wolfId);
-        if(wolfManager.getWolfById(wolf.getId()) == null)
+        if(wolf == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be updated as it could not be found.");
         Wolf newWolf = wolfManager.updateWolf(wolf, updatedWolf);
         if(newWolf == null)

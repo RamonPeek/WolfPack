@@ -49,12 +49,12 @@ public class PackEndpointTests {
     @Test
     public void testGetPackByIdEndpointWithExistingId() {
         //Arrange
-        int id = 0;
+        int packId = 0;
         ResponseEntity<Pack> response = null;
 
         //Act
         try{
-            response = packController.getPackById(id);
+            response = packController.getPackById(packId);
         }
 
         //Assert
@@ -67,11 +67,11 @@ public class PackEndpointTests {
     @Test
     public void testGetPackByIdEndpointWithNonExistingId() {
         //Arrange
-        int id = 2;
+        int packId = 2;
 
         //Act
         try{
-            packController.getPackById(id);
+            packController.getPackById(packId);
             Assertions.fail();
         }
         //Assert
