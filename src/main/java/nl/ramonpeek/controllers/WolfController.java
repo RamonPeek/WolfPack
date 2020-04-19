@@ -15,7 +15,7 @@ import javax.validation.ValidatorFactory;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/wolf", produces = "application/json")
+@RequestMapping(value = "/wolf")
 public class WolfController implements IWolfController {
 
     @Autowired
