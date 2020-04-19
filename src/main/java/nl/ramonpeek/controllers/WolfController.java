@@ -25,7 +25,11 @@ public class WolfController implements IWolfController {
 
     private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
-    @ApiOperation(value = "Get a wolf based on an id")
+    public WolfController(IWolfManager wolfManager) {
+        this.wolfManager = wolfManager;
+    }
+
+    @ApiOperation(value = "Get a wolf based on an id.")
     @GetMapping("{wolfId}")
     public ResponseEntity<Wolf> getWolfById(@PathVariable("wolfId") int wolfId) {
         Wolf wolf = wolfManager.getWolfById(wolfId);

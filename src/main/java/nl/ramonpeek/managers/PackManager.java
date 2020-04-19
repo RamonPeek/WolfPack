@@ -13,9 +13,6 @@ import java.util.List;
 
 public class PackManager implements IPackManager {
 
-    @Autowired
-    private WolfManager wolfManager;
-
     private IPackRepo packRepo;
 
     private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
