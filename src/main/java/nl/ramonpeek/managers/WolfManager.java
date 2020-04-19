@@ -16,26 +16,26 @@ public class WolfManager implements IWolfManager {
 
     @Override
     public Wolf getWolfById(int wolfId) {
-        return null;
+        return wolfRepo.getWolfById(wolfId);
     }
 
     @Override
     public List<Wolf> getAllWolves() {
-        return null;
+        return wolfRepo.getAllWolves();
     }
 
     @Override
     public Wolf createWolf(Wolf wolf) {
-        return null;
+        return wolfRepo.createWolf(wolf);
     }
 
     @Override
     public Wolf deleteWolf(Wolf wolf) {
-        return null;
+        return wolfRepo.deleteWolf(wolf);
     }
 
     @Override
     public Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf) {
-        return null;
+        return wolfRepo.updateWolf(requestedWolf, updatedWolf);
     }
 }

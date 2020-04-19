@@ -28,10 +28,10 @@ public interface IWolfController {
 
     /**
      * A method for deleting a wolf.
-     * @param wolf the Wolf-object that needs to be deleted.
+     * @param wolfId the id of the wolf that needs to be deleted.
      * @return the deleted Wolf-object; if the wolf could not be deleted this returns null.
      */
-    Wolf deleteWolf(Wolf wolf);
+    Wolf deleteWolf(int wolfId);
 
     /**
      * A method for updating a wolf.

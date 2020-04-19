@@ -20,31 +20,33 @@ public class PackController implements IPackController {
     @ApiOperation(value = "Get a pack based on an id", response = Pack.class)
     @GetMapping("{packId}")
     public Pack getPackById(@PathVariable("packId") int packId) {
-        return null;
+        return packManager.getPackById(packId);
     }
 
     @ApiOperation(value = "Get a collection of all packs.", response = Pack.class, responseContainer = "List")
     @GetMapping()
     public List<Pack> getAllPacks() {
-        return null;
+        return packManager.getAllPacks();
     }
 
     @ApiOperation(value = "Create a pack.", response = Pack.class)
     @PostMapping()
     public Pack createPack(@RequestBody Pack pack) {
-        return null;
+        return packManager.createPack(pack);
     }
 
     @ApiOperation(value = "Add a wolf to a pack.", response = Pack.class)
     @PutMapping("{packId}/addWolf")
     public Pack addWolfToPack(@RequestBody Wolf wolf, @PathVariable("packId") int packId) {
-        return null;
+        Pack pack = packManager.getPackById(packId);
+        return packManager.addWolfToPack(wolf, pack);
     }
 
     @ApiOperation(value = "Remove a wolf from a pack.", response = Pack.class)
     @PutMapping("{packId}/removeWolf")
     public Pack removeWolfFromPack(@RequestBody Wolf wolf, @PathVariable("packId") int packId) {
-        return null;
+        Pack pack = packManager.getPackById(packId);
+        return packManager.removeWolfFromPack(wolf, pack);
     }
 
 }

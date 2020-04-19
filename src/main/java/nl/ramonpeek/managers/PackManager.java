@@ -17,26 +17,26 @@ public class PackManager implements IPackManager {
 
     @Override
     public Pack getPackById(int packId) {
-        return null;
+        return packRepo.getPackById(packId);
     }
 
     @Override
     public List<Pack> getAllPacks() {
-        return null;
+        return packRepo.getAllPacks();
     }
 
     @Override
     public Pack createPack(Pack pack) {
-        return null;
+        return packRepo.createPack(pack);
     }
 
     @Override
     public Pack addWolfToPack(Wolf wolf, Pack pack) {
-        return null;
+        return packRepo.addWolfToPack(wolf, pack);
     }
 
     @Override
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
-        return null;
+        return packRepo.removeWolfFromPack(wolf, pack);
     }
 }

@@ -16,26 +16,29 @@ public class WolfMemoryContext implements IWolfContext {
 
     @Override
     public Wolf getWolfById(int wolfId) {
-        return null;
+        return memory.stream().filter(w -> w.getId() == wolfId).findFirst().orElse(null);
     }
 
     @Override
     public List<Wolf> getAllWolves() {
-        return null;
+        return memory;
     }
 
     @Override
     public Wolf createWolf(Wolf wolf) {
-        return null;
+        memory.add(wolf);
+        return wolf;
     }
 
     @Override
     public Wolf deleteWolf(Wolf wolf) {
-        return null;
+        memory.remove(memory.stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
+        return wolf;
     }
 
     @Override
     public Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf) {
-        return null;
+        memory.set(memory.indexOf(memory.stream().filter(w -> w.getId() == requestedWolf.getId()).findFirst().orElse(null)), updatedWolf);
+        return updatedWolf;
     }
 }

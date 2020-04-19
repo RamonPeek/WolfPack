@@ -17,26 +17,37 @@ public class PackMemoryContext implements IPackContext {
 
     @Override
     public Pack getPackById(int packId) {
-        return null;
+        return memory.stream().filter(p -> p.getId() == packId).findFirst().orElse(null);
     }
 
     @Override
     public List<Pack> getAllPacks() {
-        return null;
+        return memory;
     }
 
     @Override
     public Pack createPack(Pack pack) {
-        return null;
+        memory.add(pack);
+        return pack;
     }
 
     @Override
     public Pack addWolfToPack(Wolf wolf, Pack pack) {
-        return null;
+        Pack foundPack = memory.stream().filter(p -> p.getId() == pack.getId()).findFirst().orElse(null);
+        if(foundPack == null)
+            return null;
+        foundPack.getWolves().add(wolf);
+        memory.set(memory.indexOf(foundPack), foundPack);
+        return foundPack;
     }
 
     @Override
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
-        return null;
+        Pack foundPack = memory.stream().filter(p -> p.getId() == pack.getId()).findFirst().orElse(null);
+        if(foundPack == null)
+            return null;
+        foundPack.getWolves().remove(foundPack.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null));
+        memory.set(memory.indexOf(foundPack), foundPack);
+        return foundPack;
     }
 }
