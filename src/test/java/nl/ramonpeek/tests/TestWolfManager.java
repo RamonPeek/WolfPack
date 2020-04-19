@@ -139,7 +139,7 @@ public class TestWolfManager {
     @Test
     public void testDeleteNonExistingWolf() {
         //Arrange
-        Wolf wolf = wolfManager.getWolfById(0);
+        Wolf wolf = wolfManager.getWolfById(2);
 
         //Act
         Wolf result = wolfManager.deleteWolf(wolf);

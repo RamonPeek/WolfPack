@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.List;
@@ -26,8 +27,7 @@ public class PackController implements IPackController {
     @Autowired
     private IWolfManager wolfManager;
 
-    @Autowired
-    private ValidatorFactory validatorFactory;
+    private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
     @ApiOperation(value = "Get a pack based on an id", response = Pack.class)
     @GetMapping("{packId}")

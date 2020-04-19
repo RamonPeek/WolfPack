@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.List;
@@ -21,8 +22,7 @@ public class WolfController implements IWolfController {
     @Autowired
     private IWolfManager wolfManager;
 
-    @Autowired
-    private ValidatorFactory validatorFactory;
+    private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
     @ApiOperation(value = "Get a wolf based on an id", response = Wolf.class)
     @GetMapping("{wolfId}")

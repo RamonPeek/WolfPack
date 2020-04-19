@@ -27,9 +27,4 @@ public class ApplicationConfiguration {
         return new PackManager(new PackRepo(new PackMemoryContext()));
     }
 
-    @Bean
-    public ValidatorFactory validatorFactory() {
-        return Validation.buildDefaultValidatorFactory();
-    }
-
 }

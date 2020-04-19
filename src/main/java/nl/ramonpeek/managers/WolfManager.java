@@ -3,8 +3,8 @@ package nl.ramonpeek.managers;
 import nl.ramonpeek.managers.interfaces.IWolfManager;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IWolfRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.List;
@@ -13,8 +13,7 @@ public class WolfManager implements IWolfManager {
 
     private IWolfRepo wolfRepo;
 
-    @Autowired
-    private ValidatorFactory validatorFactory;
+    private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
     public WolfManager(IWolfRepo wolfRepo) {
         this.wolfRepo = wolfRepo;

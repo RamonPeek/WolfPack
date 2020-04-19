@@ -6,6 +6,7 @@ import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IPackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 import java.util.List;
 
@@ -13,8 +14,7 @@ public class PackManager implements IPackManager {
 
     private IPackRepo packRepo;
 
-    @Autowired
-    private ValidatorFactory validatorFactory;
+    private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
     public PackManager(IPackRepo packRepo) {
         this.packRepo = packRepo;
