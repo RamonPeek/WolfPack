@@ -59,41 +59,43 @@ public class PackController implements IPackController {
     }
 
     @ApiOperation(value = "Add a wolf to a pack.")
-    @PutMapping("{packId}/addWolf")
-    public ResponseEntity<String> addWolfToPack(@RequestBody Wolf wolf, @PathVariable("packId") int packId) {
+    @PutMapping("{packId}/addWolf/{wolfId}")
+    public ResponseEntity<String> addWolfToPack(@PathVariable("wolfId") int wolfId, @PathVariable("packId") int packId) {
         Validator validator = validatorFactory.getValidator();
+        Wolf wolf = wolfManager.getWolfById(wolfId);
+        if(wolf == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be added to a pack with id " + packId + " as the wolf does not exist.");
         if(!validator.validate(wolf).isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Wolf-object.");
-        if(wolfManager.getWolfById(wolf.getId()) == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolf.getId() + " could not be added to a pack with id " + packId + " as the wolf does not exist.");
         Pack pack = packManager.getPackById(packId);
         if(pack == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolf.getId() + " could not be added to a pack with id " + packId + " as the pack does not exist.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be added to a pack with id " + packId + " as the pack does not exist.");
         if(pack.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null) != null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A wolf with id " + wolf.getId() + " already exists in a pack with id " + packId + ".");
-        Pack updatedPack = packManager.addWolfToPack(wolf, pack);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A wolf with id " + wolfId + " already exists in a pack with id " + packId + ".");
+        Pack updatedPack = packManager.addWolfToPack(wolfManager.getWolfById(wolf.getId()), pack);
         if(updatedPack == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "A wolf with id " + wolf.getId() + " could not be added to a pack with id " + packId + " due to a server error.");
-        return new ResponseEntity<String>("Successfully added a wolf with id " + wolf.getId() + " to a pack with id " + pack.getId() + ".", HttpStatus.OK);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "A wolf with id " + wolfId + " could not be added to a pack with id " + packId + " due to a server error.");
+        return new ResponseEntity<String>("Successfully added a wolf with id " + wolfId + " to a pack with id " + packId + ".", HttpStatus.OK);
     }
 
     @ApiOperation(value = "Remove a wolf from a pack.")
-    @PutMapping("{packId}/removeWolf")
-    public ResponseEntity<String> removeWolfFromPack(@RequestBody Wolf wolf, @PathVariable("packId") int packId) {
+    @PutMapping("{packId}/removeWolf/{wolfId}")
+    public ResponseEntity<String> removeWolfFromPack(@PathVariable("wolfId") int wolfId, @PathVariable("packId") int packId) {
         Validator validator = validatorFactory.getValidator();
+        Wolf wolf = wolfManager.getWolfById(wolfId);
+        if(wolf == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be removed from a pack with id " + packId + " as the wolf does not exist.");
         if(!validator.validate(wolf).isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Wolf-object.");
-        if(wolfManager.getWolfById(wolf.getId()) == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolf.getId() + " could not be removed from a pack with id " + packId + " as the wolf does not exist.");
         Pack pack = packManager.getPackById(packId);
         if(pack == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolf.getId() + " could not be removed from a pack with id " + packId + " as the pack does not exist.");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be removed from a pack with id " + packId + " as the pack does not exist.");
         if(pack.getWolves().stream().filter(w -> w.getId() == wolf.getId()).findFirst().orElse(null) == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A wolf with id " + wolf.getId() + " does not exist in a pack with id " + packId + ".");
-        Pack updatedPack = packManager.addWolfToPack(wolf, pack);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A wolf with id " + wolfId + " does not exist in a pack with id " + packId + ".");
+        Pack updatedPack = packManager.removeWolfFromPack(wolf, pack);
         if(updatedPack == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "A wolf with id " + wolf.getId() + " could not be removed from a pack with id " + packId + " due to a server error.");
-        return new ResponseEntity<String>("Successfully removed a wolf with id " + wolf.getId() + " from a pack with id " + pack.getId() + ".", HttpStatus.OK);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "A wolf with id " + wolfId + " could not be removed from a pack with id " + packId + " due to a server error.");
+        return new ResponseEntity<String>("Successfully removed a wolf with id " + wolfId + " from a pack with id " + packId + ".", HttpStatus.OK);
     }
 
 }

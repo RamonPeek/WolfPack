@@ -30,18 +30,18 @@ public interface IPackController {
 
     /**
      * A method for adding a wolf to a pack.
-     * @param wolf the Wolf-object that needs to be added to a pack.
+     * @param wolfId the id of the wolf that needs to be added to a pack.
      * @param packId the id of the pack that a wolf needs to be added to.
      * @return the updated Pack-object containing the newly added wolf; if the wolf could not be added or the packId is invalid this returns null.
      */
-    ResponseEntity<String> addWolfToPack(Wolf wolf, int packId);
+    ResponseEntity<String> addWolfToPack(int wolfId, int packId);
 
     /**
      * A method for removing a wolf from a pack.
-     * @param wolf the Wolf-object that needs to be removed from a pack.
+     * @param wolfId the id of the wolf that needs to be removed from a pack.
      * @param packId the id of the pack that a wolf needs to be removed from.
      * @return a response entity containing the status code and body.
      */
-    ResponseEntity<String> removeWolfFromPack(Wolf wolf, int packId);
+    ResponseEntity<String> removeWolfFromPack(int wolfId, int packId);
 
 }
