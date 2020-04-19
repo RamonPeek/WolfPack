@@ -4,12 +4,17 @@ import nl.ramonpeek.managers.interfaces.IPackManager;
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IPackRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.ValidatorFactory;
 import java.util.List;
 
 public class PackManager implements IPackManager {
 
     private IPackRepo packRepo;
+
+    @Autowired
+    private ValidatorFactory validatorFactory;
 
     public PackManager(IPackRepo packRepo) {
         this.packRepo = packRepo;
@@ -38,5 +43,10 @@ public class PackManager implements IPackManager {
     @Override
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
         return packRepo.removeWolfFromPack(wolf, pack);
+    }
+
+    @Override
+    public boolean containsPack(Pack pack) {
+        return packRepo.containsPack(pack);
     }
 }

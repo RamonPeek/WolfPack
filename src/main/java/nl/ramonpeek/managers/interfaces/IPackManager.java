@@ -43,4 +43,11 @@ public interface IPackManager {
      */
     Pack removeWolfFromPack(Wolf wolf, Pack pack);
 
+    /**
+     * A method for checking if a pack exists
+     * @param pack the Pack-object that is checked for existence.
+     * @return a boolean representing the existence of a pack.
+     */
+    boolean containsPack(Pack pack);
+
 }

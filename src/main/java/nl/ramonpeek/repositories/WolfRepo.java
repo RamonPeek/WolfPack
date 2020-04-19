@@ -38,4 +38,9 @@ public class WolfRepo implements IWolfRepo {
     public Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf) {
         return wolfContext.updateWolf(requestedWolf, updatedWolf);
     }
+
+    @Override
+    public boolean containsWolf(Wolf wolf) {
+        return wolfContext.containsWolf(wolf);
+    }
 }

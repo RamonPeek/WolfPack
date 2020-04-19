@@ -39,4 +39,9 @@ public class PackRepo implements IPackRepo {
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
         return packContext.removeWolfFromPack(wolf, pack);
     }
+
+    @Override
+    public boolean containsPack(Pack pack) {
+        return packContext.containsPack(pack);
+    }
 }

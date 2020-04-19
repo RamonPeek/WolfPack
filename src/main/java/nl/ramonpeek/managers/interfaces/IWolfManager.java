@@ -41,4 +41,11 @@ public interface IWolfManager {
      */
     Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf);
 
+    /**
+     * A method for checking if a wolf exists
+     * @param wolf the Wolf-object that is checked for existence.
+     * @return a boolean representing the existence of a wolf.
+     */
+    boolean containsWolf(Wolf wolf);
+
 }

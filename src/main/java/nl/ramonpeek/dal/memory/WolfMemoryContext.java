@@ -41,4 +41,9 @@ public class WolfMemoryContext implements IWolfContext {
         memory.set(memory.indexOf(memory.stream().filter(w -> w.getId() == requestedWolf.getId()).findFirst().orElse(null)), updatedWolf);
         return updatedWolf;
     }
+
+    @Override
+    public boolean containsWolf(Wolf wolf) {
+        return memory.stream().anyMatch(w -> w.getId() == wolf.getId());
+    }
 }

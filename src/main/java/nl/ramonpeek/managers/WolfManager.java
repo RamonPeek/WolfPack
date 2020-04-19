@@ -3,12 +3,18 @@ package nl.ramonpeek.managers;
 import nl.ramonpeek.managers.interfaces.IWolfManager;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IWolfRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.util.List;
 
 public class WolfManager implements IWolfManager {
 
     private IWolfRepo wolfRepo;
+
+    @Autowired
+    private ValidatorFactory validatorFactory;
 
     public WolfManager(IWolfRepo wolfRepo) {
         this.wolfRepo = wolfRepo;
@@ -16,9 +22,7 @@ public class WolfManager implements IWolfManager {
 
     @Override
     public Wolf getWolfById(int wolfId) {
-        Wolf wolf = wolfRepo.getWolfById(wolfId);
-
-        return wolf;
+        return wolfRepo.getWolfById(wolfId);
     }
 
     @Override
@@ -28,6 +32,9 @@ public class WolfManager implements IWolfManager {
 
     @Override
     public Wolf createWolf(Wolf wolf) {
+        Validator validator = validatorFactory.getValidator();
+        if(wolf == null || !validator.validate(wolf).isEmpty() || wolfRepo.containsWolf(wolf))
+            return null;
         return wolfRepo.createWolf(wolf);
     }
 
@@ -39,5 +46,10 @@ public class WolfManager implements IWolfManager {
     @Override
     public Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf) {
         return wolfRepo.updateWolf(requestedWolf, updatedWolf);
+    }
+
+    @Override
+    public boolean containsWolf(Wolf wolf) {
+        return wolfRepo.containsWolf(wolf);
     }
 }

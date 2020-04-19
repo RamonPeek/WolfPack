@@ -50,7 +50,7 @@ public class PackController implements IPackController {
         Validator validator = validatorFactory.getValidator();
         if(!validator.validate(pack).isEmpty())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Pack-object.");
-        if(packManager.getPackById(pack.getId()) != null)
+        if(packManager.containsPack(pack))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body contains pack id " + pack.getId() + " which is already bound to another pack.");
         Pack createdPack = packManager.createPack(pack);
         if(createdPack == null)

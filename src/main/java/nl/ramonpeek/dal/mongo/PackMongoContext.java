@@ -32,4 +32,9 @@ public class PackMongoContext implements IPackContext {
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
         return null;
     }
+
+    @Override
+    public boolean containsPack(Pack pack) {
+        return false;
+    }
 }

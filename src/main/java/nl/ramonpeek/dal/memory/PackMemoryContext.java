@@ -50,4 +50,9 @@ public class PackMemoryContext implements IPackContext {
         memory.set(memory.indexOf(foundPack), foundPack);
         return foundPack;
     }
+
+    @Override
+    public boolean containsPack(Pack pack) {
+        return memory.stream().anyMatch(p -> p.getId() == pack.getId());
+    }
 }

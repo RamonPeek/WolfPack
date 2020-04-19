@@ -31,4 +31,9 @@ public class WolfMongoContext implements IWolfContext {
     public Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf) {
         return null;
     }
+
+    @Override
+    public boolean containsWolf(Wolf wolf) {
+        return false;
+    }
 }
