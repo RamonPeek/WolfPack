@@ -29,7 +29,7 @@ public class PackController implements IPackController {
 
     private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
-    @ApiOperation(value = "Get a pack based on an id", response = Pack.class)
+    @ApiOperation(value = "Get a pack based on an id")
     @GetMapping("{packId}")
     public ResponseEntity<Pack> getPackById(@PathVariable("packId") int packId) {
         Pack pack = packManager.getPackById(packId);
@@ -38,13 +38,13 @@ public class PackController implements IPackController {
         return new ResponseEntity<Pack>(pack, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Get a collection of all packs.", response = Pack.class, responseContainer = "List")
+    @ApiOperation(value = "Get a collection of all packs.")
     @GetMapping()
     public ResponseEntity<List<Pack>> getAllPacks() {
         return new ResponseEntity<List<Pack>>(packManager.getAllPacks(), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Create a pack.", response = Pack.class)
+    @ApiOperation(value = "Create a pack.")
     @PostMapping()
     public ResponseEntity<String> createPack(@RequestBody Pack pack) {
         Validator validator = validatorFactory.getValidator();
@@ -58,7 +58,7 @@ public class PackController implements IPackController {
         return new ResponseEntity<String>("Successfully created a new pack with id " + pack.getId() + ".", HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "Add a wolf to a pack.", response = Pack.class)
+    @ApiOperation(value = "Add a wolf to a pack.")
     @PutMapping("{packId}/addWolf")
     public ResponseEntity<String> addWolfToPack(@RequestBody Wolf wolf, @PathVariable("packId") int packId) {
         Validator validator = validatorFactory.getValidator();
@@ -77,7 +77,7 @@ public class PackController implements IPackController {
         return new ResponseEntity<String>("Successfully added a wolf with id " + wolf.getId() + " to a pack with id " + pack.getId() + ".", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Remove a wolf from a pack.", response = Pack.class)
+    @ApiOperation(value = "Remove a wolf from a pack.")
     @PutMapping("{packId}/removeWolf")
     public ResponseEntity<String> removeWolfFromPack(@RequestBody Wolf wolf, @PathVariable("packId") int packId) {
         Validator validator = validatorFactory.getValidator();

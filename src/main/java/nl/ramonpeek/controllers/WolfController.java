@@ -3,6 +3,7 @@ package nl.ramonpeek.controllers;
 import io.swagger.annotations.ApiOperation;
 import nl.ramonpeek.controllers.interfaces.IWolfController;
 import nl.ramonpeek.managers.interfaces.IWolfManager;
+import nl.ramonpeek.models.Location;
 import nl.ramonpeek.models.Wolf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class WolfController implements IWolfController {
 
     private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
-    @ApiOperation(value = "Get a wolf based on an id", response = Wolf.class)
+    @ApiOperation(value = "Get a wolf based on an id")
     @GetMapping("{wolfId}")
     public ResponseEntity<Wolf> getWolfById(@PathVariable("wolfId") int wolfId) {
         Wolf wolf = wolfManager.getWolfById(wolfId);
@@ -33,13 +34,13 @@ public class WolfController implements IWolfController {
         return new ResponseEntity<Wolf>(wolf, HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Get a collection of all wolves.", response = Wolf.class, responseContainer = "List")
+    @ApiOperation(value = "Get a collection of all wolves.")
     @GetMapping()
     public ResponseEntity<List<Wolf>> getAllWolves() {
         return new ResponseEntity<List<Wolf>>(wolfManager.getAllWolves(), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Create a wolf.", response = Wolf.class)
+    @ApiOperation(value = "Create a wolf.")
     @PostMapping()
     public ResponseEntity<String> createWolf(@RequestBody Wolf wolf) {
         Validator validator = validatorFactory.getValidator();
@@ -53,7 +54,7 @@ public class WolfController implements IWolfController {
         return new ResponseEntity<String>("Successfully created a new wolf with id " + wolf.getId() + ".", HttpStatus.CREATED);
     }
 
-    @ApiOperation(value = "Delete a wolf.", response = Wolf.class)
+    @ApiOperation(value = "Delete a wolf.")
     @DeleteMapping("{wolfId}")
     public ResponseEntity<String> deleteWolf(@PathVariable("wolfId") int wolfId) {
         Wolf wolf = wolfManager.getWolfById(wolfId);
@@ -65,7 +66,7 @@ public class WolfController implements IWolfController {
         return new ResponseEntity<String>("Successfully deleted a wolf with id " + wolf.getId() + ".", HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Update a wolf.", response = Wolf.class)
+    @ApiOperation(value = "Update a wolf.")
     @PutMapping("{wolfId}")
     public ResponseEntity<String> updateWolf(@PathVariable("wolfId") int wolfId, @RequestBody Wolf updatedWolf) {
         Validator validator = validatorFactory.getValidator();
@@ -78,6 +79,22 @@ public class WolfController implements IWolfController {
         if(newWolf == null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "The wolf with id " + wolfId + " could not be updated due to a server error.");
         return new ResponseEntity<String>("Successfully updated a wolf with id " + wolf.getId() + ".", HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Update a wolf's location.")
+    @PutMapping("{wolfId}/location")
+    public ResponseEntity<String> updateLocation(@PathVariable("wolfId") int wolfId, @RequestBody Location location) {
+        Validator validator = validatorFactory.getValidator();
+        Wolf wolf = wolfManager.getWolfById(wolfId);
+        if(wolf == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be updated as it could not be found.");
+        if(!validator.validate(location).isEmpty())
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Location-object.");
+        wolf.setLocation(location);
+        Wolf newWolf = wolfManager.updateWolf(wolf, wolf);
+        if(newWolf == null)
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "The wolf with id " + wolfId + " could not be updated due to a server error.");
+        return new ResponseEntity<String>("Successfully updated the location of a wolf with id " + wolf.getId() + " to: (" + location.getLatitude() + "," + location.getLongitude() + ").", HttpStatus.OK);
     }
 
 }

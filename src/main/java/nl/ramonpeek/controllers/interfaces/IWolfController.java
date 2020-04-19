@@ -1,5 +1,6 @@
 package nl.ramonpeek.controllers.interfaces;
 
+import nl.ramonpeek.models.Location;
 import nl.ramonpeek.models.Wolf;
 import org.springframework.http.ResponseEntity;
 
@@ -41,5 +42,13 @@ public interface IWolfController {
      * @return a response entity containing the status code and body.
      */
     ResponseEntity<String> updateWolf(int wolfId, Wolf updatedWolf);
+
+    /**
+     * A method for updating the location of a wolf.
+     * @param wolfId the id of the wolf that needs its location to be updated.
+     * @param location the updated Location-object.
+     * @return a response entity containing the status code and body.
+     */
+    ResponseEntity<String> updateLocation(int wolfId, Location location);
 
 }
