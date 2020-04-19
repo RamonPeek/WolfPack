@@ -199,7 +199,7 @@ public class TestPackManager {
     @Test
     public void testRemoveExistingNonPresentWolfFromExistingPack() {
         //Arrange
-        Wolf wolf = new Wolf(2, WolfType.ALPHA, "Jordi", "Siemens", Gender.MALE, new Date(), new Location(0, 0));
+        Wolf wolf = new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0));
         Pack pack = new Pack(0, "AlphaPack", new ArrayList<Wolf>() {{
             add(new Wolf(0, WolfType.BETA, "Jan", "Pieters", Gender.MALE, new Date(), new Location(0, 0)));
             add(new Wolf(1, WolfType.OMEGA, "Marije", "Janssen", Gender.FEMALE, new Date(), new Location(0, 0)));

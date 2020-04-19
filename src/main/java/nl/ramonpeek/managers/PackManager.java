@@ -7,10 +7,14 @@ import nl.ramonpeek.repositories.interfaces.IPackRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.Validation;
+import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.List;
 
 public class PackManager implements IPackManager {
+
+    @Autowired
+    private WolfManager wolfManager;
 
     private IPackRepo packRepo;
 
@@ -32,21 +36,34 @@ public class PackManager implements IPackManager {
 
     @Override
     public Pack createPack(Pack pack) {
+        Validator validator = validatorFactory.getValidator();
+        if(pack == null || !validator.validate(pack).isEmpty() || packRepo.containsPack(pack))
+            return null;
         return packRepo.createPack(pack);
     }
 
     @Override
     public Pack addWolfToPack(Wolf wolf, Pack pack) {
+        Validator validator = validatorFactory.getValidator();
+        if(wolf == null || pack == null || !validator.validate(wolf).isEmpty() || !validator.validate(pack).isEmpty() ||
+            !containsPack(pack) || pack.getWolves().stream().anyMatch(w -> w.getId() == wolf.getId()))
+                return null;
         return packRepo.addWolfToPack(wolf, pack);
     }
 
     @Override
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
+        Validator validator = validatorFactory.getValidator();
+        if(wolf == null || pack == null || !validator.validate(wolf).isEmpty() || !validator.validate(pack).isEmpty() ||
+                !containsPack(pack) || pack.getWolves().stream().noneMatch(w -> w.getId() == wolf.getId()))
+            return null;
         return packRepo.removeWolfFromPack(wolf, pack);
     }
 
     @Override
     public boolean containsPack(Pack pack) {
+        if(pack == null)
+            return false;
         return packRepo.containsPack(pack);
     }
 }
