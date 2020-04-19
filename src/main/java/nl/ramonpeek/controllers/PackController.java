@@ -59,7 +59,7 @@ public class PackController implements IPackController {
     }
 
     @ApiOperation(value = "Add a wolf to a pack.")
-    @PutMapping("{packId}/addWolf/{wolfId}")
+    @PostMapping("{packId}/wolf/{wolfId}")
     public ResponseEntity<String> addWolfToPack(@PathVariable("wolfId") int wolfId, @PathVariable("packId") int packId) {
         Validator validator = validatorFactory.getValidator();
         Wolf wolf = wolfManager.getWolfById(wolfId);
@@ -79,7 +79,7 @@ public class PackController implements IPackController {
     }
 
     @ApiOperation(value = "Remove a wolf from a pack.")
-    @PutMapping("{packId}/removeWolf/{wolfId}")
+    @DeleteMapping("{packId}/wolf/{wolfId}")
     public ResponseEntity<String> removeWolfFromPack(@PathVariable("wolfId") int wolfId, @PathVariable("packId") int packId) {
         Validator validator = validatorFactory.getValidator();
         Wolf wolf = wolfManager.getWolfById(wolfId);
