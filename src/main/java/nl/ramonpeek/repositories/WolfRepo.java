@@ -3,7 +3,6 @@ package nl.ramonpeek.repositories;
 import nl.ramonpeek.dal.interfaces.IWolfContext;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IWolfRepo;
-
 import java.util.List;
 
 public class WolfRepo implements IWolfRepo {

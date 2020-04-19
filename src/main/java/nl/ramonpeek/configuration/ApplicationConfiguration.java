@@ -4,8 +4,6 @@ import nl.ramonpeek.dal.memory.PackMemoryContext;
 import nl.ramonpeek.dal.memory.WolfMemoryContext;
 import nl.ramonpeek.managers.PackManager;
 import nl.ramonpeek.managers.WolfManager;
-import nl.ramonpeek.managers.interfaces.IPackManager;
-import nl.ramonpeek.managers.interfaces.IWolfManager;
 import nl.ramonpeek.repositories.PackRepo;
 import nl.ramonpeek.repositories.WolfRepo;
 import org.springframework.context.annotation.Bean;

@@ -1,9 +1,7 @@
 package nl.ramonpeek.repositories.interfaces;
 
-import nl.ramonpeek.dal.interfaces.IPackContext;
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
-
 import java.util.List;
 
 public interface IPackRepo {

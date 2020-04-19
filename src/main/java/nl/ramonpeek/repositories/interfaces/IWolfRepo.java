@@ -1,7 +1,6 @@
 package nl.ramonpeek.repositories.interfaces;
 
 import nl.ramonpeek.models.Wolf;
-
 import java.util.List;
 
 public interface IWolfRepo {

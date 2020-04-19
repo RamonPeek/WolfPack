@@ -4,7 +4,6 @@ import nl.ramonpeek.dal.interfaces.IPackContext;
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IPackRepo;
-
 import java.util.List;
 
 public class PackRepo implements IPackRepo {
