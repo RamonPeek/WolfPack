@@ -2,8 +2,6 @@ package nl.ramonpeek.configuration;
 
 import nl.ramonpeek.dal.memory.PackMemoryContext;
 import nl.ramonpeek.dal.memory.WolfMemoryContext;
-import nl.ramonpeek.dal.mongo.PackMongoContext;
-import nl.ramonpeek.dal.mongo.WolfMongoContext;
 import nl.ramonpeek.managers.PackManager;
 import nl.ramonpeek.managers.WolfManager;
 import nl.ramonpeek.repositories.PackRepo;

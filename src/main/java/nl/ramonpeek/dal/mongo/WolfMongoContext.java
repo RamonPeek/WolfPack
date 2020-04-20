@@ -1,11 +1,7 @@
 package nl.ramonpeek.dal.mongo;
 
-import com.mongodb.client.MongoCollection;
 import nl.ramonpeek.dal.interfaces.IWolfContext;
 import nl.ramonpeek.models.Wolf;
-import org.bson.Document;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class WolfMongoContext implements IWolfContext {
