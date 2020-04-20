@@ -2,7 +2,6 @@ package nl.ramonpeek.models;
 
 import nl.ramonpeek.models.enums.Gender;
 import nl.ramonpeek.models.enums.WolfType;
-
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 

@@ -2,7 +2,6 @@ package nl.ramonpeek.managers.interfaces;
 
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
-
 import java.util.List;
 
 public interface IPackManager {

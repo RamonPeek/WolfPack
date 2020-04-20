@@ -3,7 +3,6 @@ package nl.ramonpeek.dal.memory;
 import nl.ramonpeek.dal.interfaces.IPackContext;
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
-
 import java.util.ArrayList;
 import java.util.List;
 

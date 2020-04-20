@@ -2,7 +2,6 @@ package nl.ramonpeek.dal.mongo;
 
 import nl.ramonpeek.dal.interfaces.IWolfContext;
 import nl.ramonpeek.models.Wolf;
-
 import java.util.List;
 
 public class WolfMongoContext implements IWolfContext {

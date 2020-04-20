@@ -1,7 +1,6 @@
 package nl.ramonpeek.controllers.interfaces;
 
 import nl.ramonpeek.models.Pack;
-import nl.ramonpeek.models.Wolf;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

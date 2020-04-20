@@ -4,8 +4,6 @@ import nl.ramonpeek.managers.interfaces.IPackManager;
 import nl.ramonpeek.models.Pack;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IPackRepo;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;

@@ -3,7 +3,6 @@ package nl.ramonpeek.managers;
 import nl.ramonpeek.managers.interfaces.IWolfManager;
 import nl.ramonpeek.models.Wolf;
 import nl.ramonpeek.repositories.interfaces.IWolfRepo;
-
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;

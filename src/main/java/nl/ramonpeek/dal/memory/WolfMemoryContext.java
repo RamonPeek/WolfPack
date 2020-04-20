@@ -2,7 +2,6 @@ package nl.ramonpeek.dal.memory;
 
 import nl.ramonpeek.dal.interfaces.IWolfContext;
 import nl.ramonpeek.models.Wolf;
-
 import java.util.ArrayList;
 import java.util.List;
 
