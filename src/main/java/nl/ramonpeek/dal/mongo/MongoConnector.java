@@ -11,6 +11,10 @@ public class MongoConnector {
 
     private static MongoDatabase mongoDatabase;
 
+    /**
+     * Method for getting the necessary data to open the connection to the Mongo database.
+     * @return a singleton in the form of a MongoDatabase-object.
+     */
     public static MongoDatabase getMongoDatabase() {
         if(mongoDatabase == null) {
             MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");
