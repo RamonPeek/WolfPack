@@ -32,27 +32,31 @@ public class PackManager implements IPackManager {
     @Override
     public Pack createPack(Pack pack) {
         Validator validator = validatorFactory.getValidator();
-        if(pack == null || !validator.validate(pack).isEmpty() || packRepo.containsPack(pack))
-            return null;
-        return packRepo.createPack(pack);
+        if(pack != null)
+            if(validator.validate(pack).isEmpty())
+                if(!packRepo.containsPack(pack))
+                    return packRepo.createPack(pack);
+        return null;
     }
 
     @Override
     public Pack addWolfToPack(Wolf wolf, Pack pack) {
         Validator validator = validatorFactory.getValidator();
-        if(wolf == null || pack == null || !validator.validate(wolf).isEmpty() || !validator.validate(pack).isEmpty() ||
-            !containsPack(pack) || pack.getWolves().stream().anyMatch(w -> w.getId() == wolf.getId()))
-                return null;
-        return packRepo.addWolfToPack(wolf, pack);
+        if(wolf != null && pack != null)
+            if(validator.validate(wolf).isEmpty() && validator.validate(pack).isEmpty())
+                if(containsPack(pack) && pack.getWolves().stream().noneMatch(w -> w.getId() == wolf.getId()))
+                    return packRepo.addWolfToPack(wolf, pack);
+        return null;
     }
 
     @Override
     public Pack removeWolfFromPack(Wolf wolf, Pack pack) {
         Validator validator = validatorFactory.getValidator();
-        if(wolf == null || pack == null || !validator.validate(wolf).isEmpty() || !validator.validate(pack).isEmpty() ||
-                !containsPack(pack) || pack.getWolves().stream().noneMatch(w -> w.getId() == wolf.getId()))
-            return null;
-        return packRepo.removeWolfFromPack(wolf, pack);
+        if(wolf != null && pack != null)
+            if(validator.validate(wolf).isEmpty() && validator.validate(pack).isEmpty())
+                if(containsPack(pack) && pack.getWolves().stream().anyMatch(w -> w.getId() == wolf.getId()))
+                    return packRepo.removeWolfFromPack(wolf, pack);
+        return null;
     }
 
     @Override

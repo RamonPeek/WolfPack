@@ -31,25 +31,31 @@ public class WolfManager implements IWolfManager {
     @Override
     public Wolf createWolf(Wolf wolf) {
         Validator validator = validatorFactory.getValidator();
-        if(wolf == null || !validator.validate(wolf).isEmpty() || containsWolf(wolf))
-            return null;
-        return wolfRepo.createWolf(wolf);
+        if(wolf != null)
+            if(validator.validate(wolf).isEmpty())
+                if(!containsWolf(wolf))
+                    return wolfRepo.createWolf(wolf);
+        return null;
     }
 
     @Override
     public Wolf deleteWolf(Wolf wolf) {
         Validator validator = validatorFactory.getValidator();
-        if(wolf == null || !validator.validate(wolf).isEmpty() || !containsWolf(wolf))
-            return null;
-        return wolfRepo.deleteWolf(wolf);
+        if(wolf != null)
+            if(validator.validate(wolf).isEmpty())
+                if(containsWolf(wolf))
+                    return wolfRepo.deleteWolf(wolf);
+        return null;
     }
 
     @Override
     public Wolf updateWolf(Wolf requestedWolf, Wolf updatedWolf) {
         Validator validator = validatorFactory.getValidator();
-        if(requestedWolf == null || updatedWolf == null || !validator.validate(requestedWolf).isEmpty() || !validator.validate(updatedWolf).isEmpty() || !containsWolf(requestedWolf))
-            return null;
-        return wolfRepo.updateWolf(requestedWolf, updatedWolf);
+        if(requestedWolf != null && updatedWolf != null)
+            if(validator.validate(requestedWolf).isEmpty() && validator.validate(updatedWolf).isEmpty())
+                if(containsWolf(requestedWolf))
+                    return wolfRepo.updateWolf(requestedWolf, updatedWolf);
+        return null;
     }
 
     @Override
