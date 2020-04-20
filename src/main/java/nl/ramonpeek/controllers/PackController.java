@@ -69,13 +69,16 @@ public class PackController implements IPackController {
     @ApiOperation(value = "Add a wolf to a pack.")
     @PostMapping("{packId}/wolf/{wolfId}")
     public ResponseEntity<String> addWolfToPack(@PathVariable("wolfId") int wolfId, @PathVariable("packId") int packId) {
+        //Check if a wolf exists with id = {packId}.
+        Wolf wolf = wolfManager.getWolfById(wolfId);
+        if(wolf == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be added to a pack with id " + packId + " as the wolf does not exist.");
         //Check if a pack exists with id = {packId}.
         Pack pack = packManager.getPackById(packId);
         if(pack == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be added to a pack with id " + packId + " as the pack does not exist.");
         //Check if the pack already contains a wolf with id = {wolfId}.
-        Wolf wolf = pack.getWolves().stream().filter(w -> w.getId() == wolfId).findFirst().orElse(null);
-        if(wolf != null)
+        if(pack.getWolves().stream().filter(w -> w.getId() == wolfId).findFirst().orElse(null) != null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A wolf with id " + wolfId + " already exists in a pack with id " + packId + ".");
         Pack updatedPack = packManager.addWolfToPack(wolfManager.getWolfById(wolfId), pack);
         //Check if the wolf was successfully added to the pack.
