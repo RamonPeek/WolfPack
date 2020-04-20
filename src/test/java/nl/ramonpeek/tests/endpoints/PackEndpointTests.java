@@ -169,24 +169,6 @@ public class PackEndpointTests {
     }
 
     @Test
-    public void testAddWolfToPackEndPointWithNonExistingWolfIdAndExistingPackId() {
-        //Arrange
-        int wolfId = 2;
-        int packId = 0;
-
-        //Act
-        try{
-            packController.addWolfToPack(wolfId, packId);
-            Assertions.fail();
-        }
-
-        //Assert
-        catch(ResponseStatusException exception) {
-            Assertions.assertEquals(exception.getStatus(), HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @Test
     public void testAddWolfToPackEndPointWithExistingWolfIdAndNonExistingPackId() {
         //Arrange
         int wolfId = 1;
