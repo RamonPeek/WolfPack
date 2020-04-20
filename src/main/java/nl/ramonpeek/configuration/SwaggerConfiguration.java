@@ -17,6 +17,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration extends WebMvcConfigurationSupport {
 
+    /**
+     * A method for defining which controllers to use in Swagger.
+     * @return a Docket object which contains configuration settings.
+     */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
@@ -24,6 +28,10 @@ public class SwaggerConfiguration extends WebMvcConfigurationSupport {
                 .paths(PathSelectors.any()).build().apiInfo(metaData());
     }
 
+    /**
+     * A method for changing the metadata of Swagger (mainly information on landing-page).
+     * @return an ApiInfo object containing all the set metadata.
+     */
     private ApiInfo metaData() {
         return new ApiInfoBuilder().title("WolfPack RESTful API")
                 .description("RESTful API for WolfPack.")
@@ -34,6 +42,10 @@ public class SwaggerConfiguration extends WebMvcConfigurationSupport {
                 .build();
     }
 
+    /**
+     * Method for making the Swagger UI accessible.
+     * @param registry the Spring-registry.
+     */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
