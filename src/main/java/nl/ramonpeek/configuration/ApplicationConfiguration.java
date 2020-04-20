@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfiguration {
 
     /**
-     * A method for creating a bean which can be used as a singleton.
+     * A method for creating a PackManager-bean which defines the implementation for every autowired IPackManager.
      * @return A method which returns a singleton for the PackManager which is accessible via @Autowired.
      */
     @Bean
@@ -22,7 +22,7 @@ public class ApplicationConfiguration {
     }
 
     /**
-     * A method for creating a bean which can be used as a singleton.
+     * A method for creating a PackManager-bean which defines the implementation for every autowired IWolfManager.
      * @return A method which returns a singleton for the PackManager which is accessible via @Autowired.
      */
     @Bean
