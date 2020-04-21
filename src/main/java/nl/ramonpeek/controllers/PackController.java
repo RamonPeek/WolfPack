@@ -27,11 +27,6 @@ public class PackController implements IPackController {
     private IWolfManager wolfManager;
     private ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
-    public PackController(IPackManager packManager, IWolfManager wolfManager) {
-        this.packManager = packManager;
-        this.wolfManager = wolfManager;
-    }
-
     @ApiOperation(value = "Get a pack based on an id")
     @GetMapping("{packId}")
     public ResponseEntity<Pack> getPackById(@PathVariable("packId") int packId) {
