@@ -54,6 +54,7 @@ public class WolfManager implements IWolfManager {
         if(requestedWolf != null && updatedWolf != null)
             if(validator.validate(requestedWolf).isEmpty() && validator.validate(updatedWolf).isEmpty())
                 if(containsWolf(requestedWolf))
+                    if(requestedWolf.getId() == updatedWolf.getId())
                     return wolfRepo.updateWolf(requestedWolf, updatedWolf);
         return null;
     }

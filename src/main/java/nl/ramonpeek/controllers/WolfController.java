@@ -87,6 +87,9 @@ public class WolfController implements IWolfController {
         Wolf wolf = wolfManager.getWolfById(wolfId);
         if(wolf == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be updated as it could not be found.");
+        //Check if the updated wolf is the same as the requested wolf.
+        if(updatedWolf.getId() != wolfId)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A wolf with id " + wolfId + " could not be updated as the wolfId in the parameters and request body do not match.");
         Wolf newWolf = wolfManager.updateWolf(wolf, updatedWolf);
         //Check if the wolf was successfully updated.
         if(newWolf == null)
