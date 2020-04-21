@@ -1,4 +1,4 @@
-package nl.ramonpeek.tests.logic;
+package nl.ramonpeek.tests;
 
 import nl.ramonpeek.dal.memory.WolfMemoryContext;
 import nl.ramonpeek.managers.WolfManager;
