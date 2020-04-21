@@ -51,14 +51,14 @@ public class WolfController implements IWolfController {
         //Validate if the request-body contains a valid Wolf-object.
         Validator validator = validatorFactory.getValidator();
         if(!validator.validate(wolf).isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Wolf-object.");
+            return new ResponseEntity<String>("The provided request-body does not contain a valid Wolf-object.", HttpStatus.BAD_REQUEST);
         //Check if a wolf already exists with id = {wolf.getId()}.
         if(wolfManager.getWolfById(wolf.getId()) != null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body contains wolf id " + wolf.getId() + " which is already bound to another wolf.");
+            return new ResponseEntity<String>("The provided request-body contains wolf id " + wolf.getId() + " which is already bound to another wolf.", HttpStatus.BAD_REQUEST);
         Wolf createdWolf = wolfManager.createWolf(wolf);
         //Check if the creation of the wolf was successful.
         if(createdWolf == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "The wolf with id " + wolf.getId() + " could not be created due to a server error.");
+            return new ResponseEntity<String>("The wolf with id " + wolf.getId() + " could not be created due to a server error.", HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<String>("Successfully created a new wolf with id " + wolf.getId() + ".", HttpStatus.CREATED);
     }
 
@@ -68,11 +68,11 @@ public class WolfController implements IWolfController {
         //Check if a wolf exists with id = {wolfId}.
         Wolf wolf = wolfManager.getWolfById(wolfId);
         if(wolf == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be deleted as it could not be found.");
+            return new ResponseEntity<String>("A wolf with id " + wolfId + " could not be deleted as it could not be found.", HttpStatus.NOT_FOUND);
         Wolf deletedWolf = wolfManager.deleteWolf(wolf);
         //Check if the deletion of the wolf was successful.
         if(deletedWolf == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "The wolf with id " + wolfId + " could not be deleted due to a server error.");
+            return new ResponseEntity<String>("The wolf with id " + wolfId + " could not be deleted due to a server error.", HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<String>("Successfully deleted a wolf with id " + wolf.getId() + ".", HttpStatus.OK);
     }
 
@@ -82,18 +82,18 @@ public class WolfController implements IWolfController {
         //Validate if the request-body contains a valid Wolf-object.
         Validator validator = validatorFactory.getValidator();
         if(!validator.validate(updatedWolf).isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Wolf-object.");
+            return new ResponseEntity<String>("The provided request-body does not contain a valid Wolf-object.", HttpStatus.BAD_REQUEST);
         //Check if a wolf exists with id = {wolfId}.
         Wolf wolf = wolfManager.getWolfById(wolfId);
         if(wolf == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be updated as it could not be found.");
+            return new ResponseEntity<String>("A wolf with id " + wolfId + " could not be updated as it could not be found.", HttpStatus.NOT_FOUND);
         //Check if the updated wolf is the same as the requested wolf.
         if(updatedWolf.getId() != wolfId)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "A wolf with id " + wolfId + " could not be updated as the wolfId in the parameters and request body do not match.");
+            return new ResponseEntity<String>("A wolf with id " + wolfId + " could not be updated as the wolfId in the parameters and request body do not match.", HttpStatus.BAD_REQUEST);
         Wolf newWolf = wolfManager.updateWolf(wolf, updatedWolf);
         //Check if the wolf was successfully updated.
         if(newWolf == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "The wolf with id " + wolfId + " could not be updated due to a server error.");
+            return new ResponseEntity<String>("The wolf with id " + wolfId + " could not be updated due to a server error.", HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<String>("Successfully updated a wolf with id " + wolf.getId() + ".", HttpStatus.OK);
     }
 
@@ -103,17 +103,17 @@ public class WolfController implements IWolfController {
         //Validate if the request-body contains a valid Location-object.
         Validator validator = validatorFactory.getValidator();
         if(!validator.validate(location).isEmpty())
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The provided request-body does not contain a valid Location-object.");
+            return new ResponseEntity<String>("The provided request-body does not contain a valid Location-object.", HttpStatus.BAD_REQUEST);
         //Check if a wolf exists with id = {wolfId}.
         Wolf wolf = wolfManager.getWolfById(wolfId);
         if(wolf == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "A wolf with id " + wolfId + " could not be updated as it could not be found.");
+            return new ResponseEntity<String>("A wolf with id " + wolfId + " could not be updated as it could not be found.", HttpStatus.NOT_FOUND);
         //Update the location of the wolf.
         wolf.setLocation(location);
         Wolf newWolf = wolfManager.updateWolf(wolf, wolf);
         //Check if the location of the wolf was successfully updated.
         if(newWolf == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "The wolf with id " + wolfId + " could not be updated due to a server error.");
+            return new ResponseEntity<String>("The wolf with id " + wolfId + " could not be updated due to a server error.", HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<String>("Successfully updated the location of a wolf with id " + wolf.getId() + " to: (" + location.getLatitude() + "," + location.getLongitude() + ").", HttpStatus.OK);
     }
 
