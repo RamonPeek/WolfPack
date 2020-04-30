@@ -47,10 +47,26 @@ For testing I have decided to use JUnit 5 as it is easy to quickly setup unit te
 For model-validation I decided to use Hibernate Validation. It allows for model validation based on annotations like @Null or @Required. Especially as an API can be very dependent on the incoming request-body, I decided to add this as an extra validation check.
 
 #### Class diagram
+The following class diagram is set up using the provided requirements in the assignment. I am assuming that a pack can consist of 1 or more wolves, and that a wolf can also be present in multiple packs.
+![Class diagram](https://i.imgur.com/clPHETD.png)
 
 #### Component diagram
+The WolfPack API backend will make use of the Spring framework. The controllers will receive the http-request and will return data via JSON if possible. Invalid requests will be handled in the controller as well. The wolf- and packcomponent in the diagram below represent the code which is necessary to transfer data. I will go more in depth about the implementation of the components in the next section.
+
+![Component diagram](https://i.imgur.com/jVE46eT.png)
 
 #### Layer responsibilities and dataflow
+I have decided to make use of a multi-layered software architecture (derived from the repository-pattern) which consists of 4 mandatory layers, and 2 supporting layers. The mandatory layers determine the flow of the data (Controller -> Manager -> Repo -> Dal) and the 2 supporting layers help accomplish the flow.
+| Layer | Function |
+|-------|----------|
+| Configuration | Provide configuration-settings for the application. |
+| Controllers | Intercept incoming http-requests. |
+| Managers | Execute all logic-based checks. |
+| Repositories | Specify which data source to use. |
+| DAL | Getting data from the data source. |
+| Models | Provide classes which are known to all other layers for transferring, filling and retrieving data. |
+
+![Layer diagram](https://i.imgur.com/gVdUeHV.png)
 
 #### Package diagram
 
