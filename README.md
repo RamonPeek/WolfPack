@@ -18,4 +18,16 @@ Once the API is booted successfully, it will print a link to the Swagger UI in t
 
 IntelliJ should show a box which contains all tests, and whether they failed or passed.
 
-## Design
+## Notes regarding implementation
+
+#### Comments
+If a class implements an interface, I put the method describing comments of that class in the interface. When more clarification is needed in the code, I add comments in-line.
+
+#### Checks in both controller- and logic layers
+Logic-checks are executed in both the controller- and manager-layer in order to provide as detailed responses as possible in the HTTP response.
+
+#### Seperate endpoint for location updates
+I first thought it would be handy to only use the updateWofl endpoint for updating a wolf's location, but I have changed it as it is an endpoint which probably will be requested a lot, so it is better to keep it seperated.
+
+#### Only one context implemented
+For the sake of this assignment, I have added only a memory (mock) context. I have added an empty Mongo Context to display the flow of how I would be able to change context and get data from a different data source.
