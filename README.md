@@ -31,3 +31,28 @@ I first thought it would be handy to only use the updateWofl endpoint for updati
 
 #### Only one context implemented
 For the sake of this assignment, I have added only a memory (mock) context. I have added an empty Mongo Context to display the flow of how I would be able to change context and get data from a different data source.
+
+## Design
+This section will contain all the technical designs for the WolfPack app. As I will be focusing only on the backend of a single project, I decided to only create a component diagram and class diagram instead of a complete C4-model. At the end of the document I will go in depth about the packages I will be using and their responsibilities.
+
+#### Frameworks and libraries
+![Frameworks](https://i.imgur.com/hYM52YQ.png)
+
+For the backend framework I will be using Spring framework. I have chosen for this framework as I am most comfortable with programming in Java and I like the large amount of library support. Spring also supports a wide range of libraries such as Spring security, web and session which are easily implementable in the application if needed.
+
+The assignment only mentions the design and implementation of the backend, but I like to add a simple frontend for using the REST endpoints. For this frontend I will be using the Swagger framework as it gives a clear overview of all the endpoints and it provides the default layout of the request-body for each request.
+
+For testing I have decided to use JUnit 5 as it is easy to quickly setup unit tests and it is automatically integrated in IntelliJ to view the test results. I also like to be able to decide which tests I want to run, and JUnit 5 has this functionality.
+
+For model-validation I decided to use Hibernate Validation. It allows for model validation based on annotations like @Null or @Required. Especially as an API can be very dependent on the incoming request-body, I decided to add this as an extra validation check.
+
+#### Class diagram
+
+#### Component diagram
+
+#### Layer responsibilities and dataflow
+
+#### Package diagram
+
+#### Class specifications
+
