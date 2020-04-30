@@ -69,6 +69,27 @@ I have decided to make use of a multi-layered software architecture (derived fro
 ![Layer diagram](https://i.imgur.com/gVdUeHV.png)
 
 #### Package diagram
+Besides the default C4-Model diagrams, I have decided to add a package diagram which shows the relations and structure between the different packages/layers I use. Each layer is separated by an interface so the implementation can be swapped easily. Each layer also has access to the models-package for manageable data transfer. To keep a clear overview, I have not specified the implementation of classes in this diagram. In the next section I will add full specifications (including implementations) of each individual layer and class.
+![Package diagram](https://i.imgur.com/dQHVekb.png)
 
 #### Class specifications
+- Configuration
+
+![Configuration](https://i.imgur.com/JfaE9eG.png)
+
+- Controllers
+
+![Controllers](https://i.imgur.com/sFIKHZT.png)
+
+- Managers
+
+![Managers](https://i.imgur.com/fblrDfK.png)
+
+- Repositories
+
+![Repositories](https://i.imgur.com/rPr6NEY.png)
+
+- DAL
+
+![DAL](https://i.imgur.com/ag8kl7M.png)
 
